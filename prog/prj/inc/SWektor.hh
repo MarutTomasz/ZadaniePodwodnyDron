@@ -210,7 +210,7 @@ std::istream & operator>> (std::istream &strm, Wektor<TYP,ROZMIAR> &W);
 /*!
  * \brief Przeciążenie operatora mnożenia
  *
- * Przeciążenie operatora odejmowania dla typu TYP - Wektor.
+ * Przeciążenie operatora mnożenia dla typu TYP - Wektor.
  * Dokonuje operacji mnożenia wartości argumentów.
  * \param[in] liczba - czynnik w postaci skalara (TYP).
  * \param[in] W - czynnik w postaci wektora.
@@ -240,6 +240,13 @@ template<class TYP, unsigned int ROZMIAR>
 void wyswietl_wektor_bledu(const Wektor<TYP,ROZMIAR> &W);
 
 
+/*!
+ * \brief Definicja typu Wektora
+ *
+ * Definicja skróconego zapisu wektora o rozmiarze 3, 
+ * uzywanego w plikach, korzystających z tego rodzaju 
+ * wektorów. 
+ */
 typedef Wektor<double,3> Wektor3D;
 
 #endif

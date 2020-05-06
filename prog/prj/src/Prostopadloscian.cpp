@@ -1,7 +1,28 @@
 #include "Prostopadloscian.hh"
 
+/*!
+ * \file
+ * \brief Definicja metod klasy Prostopadloscian
+ *
+ * Plik zawiera definicje metod działających 
+ * na obiektach klasy Prostopadloscian.
+ */
 
-Prostopadloscian::Prostopadloscian(unsigned int A_bok, unsigned int B_bok,unsigned int C_bok) {
+Prostopadloscian::Prostopadloscian() {}
+
+Prostopadloscian::Prostopadloscian(double A_bok,double B_bok,double C_bok) {
+  if(A < 0){
+    cout << "Dlugosc boku nie moze miec wartosci ujemnej" << endl;
+    exit(1);
+  }
+  if(B < 0){
+    cout << "Dlugosc boku nie moze miec wartosci ujemnej" << endl;
+    exit(1);
+  }
+  if(C < 0){
+    cout << "Dlugosc boku nie moze miec wartosci ujemnej" << endl;
+    exit(1);
+  }
   A = A_bok;
   B = B_bok;
   C = C_bok;
@@ -9,11 +30,11 @@ Prostopadloscian::Prostopadloscian(unsigned int A_bok, unsigned int B_bok,unsign
   Punkt_Odniesienia = Pomocniczy;
 }
 
-void Prostopadloscian::Orientuj_wektor(Wektor3D &W) {
+void Prostopadloscian::Orientuj_wektor(Wektor3D &W)const {
   W = Orientacja * W;
 }
 
-void Prostopadloscian::Uzyskaj_wspolrzedne(Wektor3D* tablica_wspolrzednych) {
+void Prostopadloscian::Uzyskaj_wspolrzedne(Wektor3D* tablica_wspolrzednych)const {
   Wektor3D pomocniczy = Orientacja * Punkt_Odniesienia;
   Wektor3D przesuniecie_x(A,0,0);
   Wektor3D przesuniecie_y(0,B,0);
@@ -43,10 +64,9 @@ void Prostopadloscian::ustaw_orientacje(const MacierzOb &Macierz) {
 
 
 
-unsigned int Prostopadloscian::Narysuj(std::shared_ptr<drawNS::Draw3DAPI> api) {
+unsigned int Prostopadloscian::Narysuj(std::shared_ptr<drawNS::Draw3DAPI> api)const {
   Wektor3D tab[8];
   (*this).Uzyskaj_wspolrzedne(tab);
-  cout << "TUTAJ" << endl;
   unsigned int tmp = api->draw_polyhedron(vector<vector<Point3D> > {{
         drawNS::Point3D(tab[0][0],tab[0][1],tab[0][2]), drawNS::Point3D(tab[1][0],tab[1][1],tab[1][2]), drawNS::Point3D(tab[2][0],tab[2][1],tab[2][2]), drawNS::Point3D(tab[3][0],tab[3][1],tab[3][2])
       },{
