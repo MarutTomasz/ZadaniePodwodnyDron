@@ -4,6 +4,15 @@
 #include "SMacierzKw.hh"
 
 /*!
+ * \brief Definicja liczby PI
+ *
+ * Definiuje stałą, która reprezentuje 
+ * przybliżoną wartość liczby PI.
+ */
+#define PI 3.141592653589
+
+
+/*!
  * \file
  * \brief Definicja klasy MacierzOb
  *
@@ -12,7 +21,7 @@
  * Zawiera także deklaracje metod działających 
  * na macierzach obrotu.
  */
-class MacierzOb: public MacierzKw<double,3> {
+class MacierzOb: public Macierz3D {
 public:
   /*!
    * \brief Konstruktor bezparametryczny macierzy obrotu
@@ -27,7 +36,16 @@ public:
    * macierz podana w argumencie jest ortonormalna.
    * \param[in] M - macierz, która jest kopiowana na macierz obrotu. 
    */
-  MacierzOb(const MacierzKw<double,3> &M);
+  MacierzOb(const Macierz3D &M);
+  /*!
+   * \brief Konstruktor dwuparametryczny macierzy obrotu
+   *
+   * Konstruktor macierzy obrotowej względem osi określonej w 
+   * pierwszym argumencie o liczbe stopni podaną w drugim argumencie
+   * \param[in] os - znak, który określa os obrotu. 
+   * \param[in] stopnie - liczba stopni obrotu. 
+   */
+  MacierzOb(char os, double stopnie);
   
 };
 

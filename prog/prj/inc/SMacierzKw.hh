@@ -107,23 +107,6 @@ public:
    */
   MacierzKw(Wektor<TYP,ROZMIAR> *tabela);
   /*!
-   * \brief Konstruktor dziewięcioparametryczny macierzy
-   *
-   * Konstruktor inicjalizuje elementy macierzy wartościami argumentów.
-   * Specjalny konstruktor do tworzenia macierzy 3x3
-   * \param[in] a11 - wartosc elemenru [0][0] macierzy.
-   * \param[in] a12 - wartosc elemenru [0][1] macierzy.
-   * \param[in] a13 - wartosc elemenru [0][2] macierzy.
-   * \param[in] a21 - wartosc elemenru [1][0] macierzy.
-   * \param[in] a22 - wartosc elemenru [1][1] macierzy.
-   * \param[in] a23 - wartosc elemenru [1][2] macierzy.
-   * \param[in] a31 - wartosc elemenru [2][0] macierzy.
-   * \param[in] a32 - wartosc elemenru [2][1] macierzy.
-   * \param[in] a33 - wartosc elemenru [2][2] macierzy.
-   */
-  MacierzKw(TYP a11, TYP a12, TYP a13, TYP a21, TYP a22, TYP a23, TYP a31, TYP a32, TYP a33);
- 
-  /*!
    * \brief Przeciążenie operatora dodawania
    *
    * Przeciążenie operatora dodawania dla typu MacierzKw - MacierzKw.
@@ -329,13 +312,12 @@ template<class TYP, unsigned int ROZMIAR>
 MacierzKw<TYP,ROZMIAR-1> pomniejsz_macierz(const MacierzKw<TYP,ROZMIAR> &M, unsigned int index1, unsigned int index2);
 
 
-// SPECJALIZACJE
-/*
-template<>
-double MacierzKw<double,1>::wyznacznik(Wyz_Metoda metoda) const;
-
-template<>
-MacierzKw<double,1> MacierzKw<double,1>::macierz_dopelnien() const;
-*/
+/*!
+ * \brief Definicja typu Macierz
+ *
+ * Definicja skróconego zapisu macierzy o rozmiarze 3, 
+ * uzywanego w macierzy obrotu. 
+ */
+typedef MacierzKw<double,3> Macierz3D;
 
 #endif

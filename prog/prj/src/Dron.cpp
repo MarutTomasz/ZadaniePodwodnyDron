@@ -22,17 +22,19 @@ if(A < 0){
   
 
 void Dron::Obrot_Z(double stopnie) {
-  MacierzKw<double,3> Ob(cos(stopnie * PI/180),-sin(stopnie * PI/180),0.0,sin(stopnie * PI/180),cos(stopnie * PI/180),0.0,0.0,0.0,1.0);
-  MacierzOb Obrot(Ob);
-
+  MacierzOb Obrot('z',stopnie);
   Orientacja = Orientacja * Obrot;
   
 }
 
 void Dron::Obrot_X(double stopnie) {
-  MacierzKw<double,3> Ob(1.0,0.0,0.0,0.0,cos(stopnie * PI/180),-sin(stopnie * PI/180),0.0,sin(stopnie * PI/180),cos(stopnie * PI/180));
+  MacierzOb Obrot('x',stopnie);
+  Orientacja = Orientacja * Obrot;
   
-  MacierzOb Obrot(Ob);
+}
+
+void Dron::Obrot_Y(double stopnie) {
+  MacierzOb Obrot('y',stopnie);
   Orientacja = Orientacja * Obrot;
   
 }

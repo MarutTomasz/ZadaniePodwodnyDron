@@ -40,19 +40,6 @@ MacierzKw<TYP,ROZMIAR>::MacierzKw(Wektor<TYP,ROZMIAR> *tabela) {
     tab[i] = tabela[i];
 }
 
-template<class TYP, unsigned int ROZMIAR>
-MacierzKw<TYP,ROZMIAR>::MacierzKw(TYP a11, TYP a12, TYP a13, TYP a21, TYP a22, TYP a23, TYP a31, TYP a32, TYP a33){
-    tab[0][0] = a11;  
-    tab[0][1] = a12;  
-    tab[0][2] = a13;  
-    tab[1][0] = a21;  
-    tab[1][1] = a22;  
-    tab[1][2] = a23;  
-    tab[2][0] = a31;  
-    tab[2][1] = a32;  
-    tab[2][2] = a33;  
-}
-
 /********** WCZYTYWANIE I WYSWIETLANIE **********/
 template<class TYP, unsigned int ROZMIAR>
 std::istream & operator >> (std::istream &strm, MacierzKw<TYP,ROZMIAR> &M) {

@@ -19,7 +19,7 @@ void wait4key() {
 }
 
 int main() {
-  Dron R2D2(10,7,4);
+  Dron R2D2(20,15,8);
   int liczba = 0;
   double kat;
   double odleglosc;
@@ -27,7 +27,6 @@ int main() {
   //drawNS::Draw3DAPI * api = new APIGnuPlot3D(-5,5,-5,5,-5,5,1000); //alternatywnie zwykły wskaźnik
   api->change_ref_time_ms(0); //odświeżanie sceny zmienione na opcję "z każdym pojawieniem się lub zniknięciem kształtu"
   int a = R2D2.Narysuj(api);
-  
   
   while (liczba != 3){
     cout << "Menu wyboru: \n 1 - obroc drona o kat\n 2 - przesun drona\n 3 - zakoncz dzialanie\n\n Twoj wybor:    ";
@@ -37,7 +36,7 @@ int main() {
     case 1: {
       cout << "Podaj kat obrotu:    ";
       cin >> kat;
-
+    
       while (kat){
 	if (kat >= 1) {
 	  kat = kat - 1;
@@ -58,7 +57,7 @@ int main() {
 	  a = R2D2.Narysuj(api);
 	}
       }
-       
+    
       break;
     }
       
@@ -68,7 +67,6 @@ int main() {
       cout << "Podaj kat nachylenia:    ";
       cin >> kat;
       double kat_kopia = kat;
-
 
       while (kat){
 	if (kat >= 1) {
@@ -133,7 +131,7 @@ int main() {
 	}
       }
  
-      
+
       break;
     }
       

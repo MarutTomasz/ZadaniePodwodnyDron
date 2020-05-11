@@ -8,7 +8,6 @@
  * Plik zawiera definicje abstrakcyjnej klasy Obiekt3D.
  * Zawiera deklaracje podstawowych pojęć charakteruzujących
  * obiekt w przestrzeni trójwymiarowej.
- * na wektorach.
  */
 
 #include <iostream>
@@ -52,6 +51,14 @@ protected:
    * współrzędnych.
    */
   MacierzOb Orientacja;
+  /*!
+   * \brief Bezparametryczny konstruktor obiektu.
+   *
+   * Konstruktor wykorzystywany przy tworzeniu 
+   * obiektów klas pochodnych. Nie pozwala samemu 
+   * stworzyć obiektu 3D. 
+   */
+  Obiekt3D() {};
 public:
   /*!
    * \brief Rysowanie obiektu

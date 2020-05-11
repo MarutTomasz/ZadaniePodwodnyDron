@@ -13,7 +13,7 @@
  * na macierzach obrotu.
  */
 class Prostopadloscian : public Obiekt3D {
-public:
+protected:
   /*!
    * \brief Długość boku w osi X
    *
@@ -41,6 +41,8 @@ public:
    * Kontruktor tworzy prostopadloscian bez inicjacji wymiarów.
    */
   Prostopadloscian(); 
+
+public:
   /*!
    * \brief Konstruktor trójparametryczny prostopadłościanu
    *
