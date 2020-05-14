@@ -20,8 +20,6 @@ using drawNS::APIGnuPlot3D;
 using std::cout;
 using std::endl;
 
-
-
 /*!
  * \brief Modeluje pojęcie Obiekt3D
  *
@@ -36,14 +34,6 @@ protected:
    */
   Wektor3D Pozycja_srodka;
   /*!
-   * \brief Wektor położenia punktu odniesienia.
-   *
-   * Punkt odniesienia służy do określenia wierzchołków lub
-   * innych istotnych punktów obiektu 3D. Najczęsciej jest 
-   * to jeden z wierzchołków figury.
-   */
-  Wektor3D Punkt_Odniesienia;
-  /*!
    * \brief Macierz orietnacji obiektu.
    *
    * Macierz jest macierzą obrotu układu współrzędnych
@@ -51,6 +41,21 @@ protected:
    * współrzędnych.
    */
   MacierzOb Orientacja;
+  /*!
+   * \brief ID figury w gnuplocie
+   *
+   * Zmienna obiektu wykorzystywana 
+   * przez gnuplota to zapamiętywania 
+   * obiektów;
+   */
+  int ID;
+  /*!
+   * \brief wskaznik na gnuplota
+   *
+   * Przechowuje wskaznik do otwartego
+   * programu gnuplot;
+   */
+  std::shared_ptr<drawNS::Draw3DAPI> api;
   /*!
    * \brief Bezparametryczny konstruktor obiektu.
    *
@@ -61,23 +66,13 @@ protected:
   Obiekt3D() {};
 public:
   /*!
-   * \brief Rysowanie obiektu
-   *
-   * Funkcja wykonuje rysunek obiektu w zadanym programie zewnętrznym.
-   * Wykorzystywane są wektory położenia środka obiekty i punktu odniesienia
-   * oraz macierz orientacji obiektu w przestrzeni.
-   * \param[in] api - wskaźnik na zewnętrzny program graficzny.
-   * \return Id w którym przechowywany jest obiekt w gnuplocie.
-   */
-  virtual unsigned int Narysuj(std::shared_ptr<drawNS::Draw3DAPI> api) const = 0;
-  /*!
    * \brief Ustawia nowy wektor środka obiektu
    *
    * Metoda zmienia wektor położenia obiektu, tzn. przesuwa obiekt 
    * na nowe położenie w przestrzeni.
    * \param[in] Wektor - nowy wektor położenia obiektu.
    */
-  virtual void ustaw_pozycje(const Wektor3D &Wektor) = 0;
+  void ustaw_pozycje(const Wektor3D &Wektor) { Pozycja_srodka = Wektor; }
   /*!
    * \brief Ustawia nowy macierz orientacje obiektu
    * 
@@ -85,8 +80,22 @@ public:
    * obraca obiekt.
    * \param[in] Macierz - nowa macierz orientacji obiektu w przestrzeni.
    */
-  virtual void ustaw_orientacje(const MacierzOb &Macierz) = 0;
-
+  void ustaw_orientacje(const MacierzOb &Macierz) { Orientacja = Macierz; }
+  /*!
+   * \brief Ustawia wskaznik na gnuplot
+   * 
+   * Metoda inicjuje wskaznik na gnuplot
+   * \param[in] API - wskaznik na gnuplot.
+   */
+  void set_api(std::shared_ptr<drawNS::Draw3DAPI> API) {api = API;}
+  /*!
+   * \brief Rysowanie obiektu
+   *
+   * Funkcja wykonuje rysunek obiektu w zadanym programie zewnętrznym.
+   * Wykorzystywane są wektory położenia środka obiekty i punktu odniesienia
+   * oraz macierz orientacji obiektu w przestrzeni.
+   */
+  virtual void Narysuj() = 0;
 };
 
 

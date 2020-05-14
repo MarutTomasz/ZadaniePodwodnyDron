@@ -45,8 +45,7 @@ public:
    * \param[in] os - znak, który określa os obrotu. 
    * \param[in] stopnie - liczba stopni obrotu. 
    */
-  MacierzOb(char os, double stopnie);
-  
+  MacierzOb(char os, double stopnie); 
 };
 
 #endif

@@ -8,11 +8,10 @@
  * Zawiera także deklaracje metod i funkcji służących do 
  * obsługi drona.
  */
-
+#include <unistd.h>
 #include <math.h>
 #include "MacierzOb.hh"
 #include "SWektor.hh"
-
 
 /*!
  * \brief Modeluje pojęcie InterfejsDrona
@@ -30,7 +29,6 @@ protected:
    * przypisanego drona.
    */
   InterfejsDrona() {};
-public:
   /*!
    * \brief Metoda obrotu drona w osi Z
    *
@@ -55,14 +53,34 @@ public:
    * \param[in] stopnie - kąt obrotu. 
    */
   virtual void Obrot_Y(double stopnie) = 0;
-   /*!
+  /*!
    * \brief Metoda przesuwania drona
    *
    * Metoda dokonująca przesuwania drona 
-   * wzdłuż osi Y o zadaną odległość
-   * \param[in] odleglosc - odległość, o jaka musi przesunąć się dron.. 
+   * wzdłuż osi X o zadaną odległość pod 
+   * zadanym kątem.
+   * \param[in] odleglosc - odległość, o jaka przesuwany jest dron.
    */
- virtual void Przesun(double odleglosc) = 0;
+  virtual void Przesun(double odleglosc) = 0;
+public:
+  /*!
+   * \brief Płynięcie drona z animacją
+   *
+   * Metoda animująca pływanie drona 
+   * wzdłuż osi X o zadaną odległość pod 
+   * zadanym kątem.
+   * \param[in] odleglosc - odległość, o jaka musi przesunąć się dron.
+   * \param[in] kat - kąt, pod jakim musi przesunąć się dron. 
+   */
+  virtual void Plyn(double odleglosc, double kat) = 0;
+  /*!
+   * \brief Metoda animowanego obrotu drona
+   *
+   * Metoda dokonująca obrotu drona z animacją wokół 
+   * osi Z o zadaną ilość stopi.
+   * \param[in] stopnie - kąt obrotu. 
+   */
+  virtual void Obrot_Animowany(double stopnie) = 0;
   
 };
 

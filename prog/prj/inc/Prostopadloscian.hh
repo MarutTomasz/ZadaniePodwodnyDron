@@ -7,10 +7,10 @@
  * \file
  * \brief Definicja klasy Prostopadloscian
  *
- * Plik zawiera definicje klasy MacierzOb, która
- * dziedzicy publicznie po klasie MacierzKw \n
- * Zawiera także deklaracje metod działających 
- * na macierzach obrotu.
+ * Plik zawiera definicje klasy Prostopadloscian, która
+ * dziedzicy publicznie po klasie Obiekt3D \n
+ * Zawiera także deklaracje metod operujących 
+ * na prostopadłościanie.
  */
 class Prostopadloscian : public Obiekt3D {
 protected:
@@ -41,21 +41,6 @@ protected:
    * Kontruktor tworzy prostopadloscian bez inicjacji wymiarów.
    */
   Prostopadloscian(); 
-
-public:
-  /*!
-   * \brief Konstruktor trójparametryczny prostopadłościanu
-   *
-   * Konstruktor tworzy prostopadłościan o zadanych w argumentach 
-   * wymiarach.
-   */
-  Prostopadloscian(double A_bok,
-		   double B_bok,
-		   double C_bok);
-  unsigned int Narysuj(std::shared_ptr<drawNS::Draw3DAPI> api) const override;
-  void ustaw_pozycje(const Wektor3D &Wektor) override;
-  void ustaw_orientacje(const MacierzOb &Macierz) override;
-
   /*!
    * \brief Metoda orientująca wektor
    *
@@ -73,7 +58,22 @@ public:
    * \param[in] tablica_wspolrzednych - tablica na współrzędne wierzchołków
    * względem globalnego układu współrzędnych.
    */
-  void Uzyskaj_wspolrzedne(Wektor3D* tablica_wspolrzednych) const;
+  void Uzyskaj_wspolrzedne(std::vector<Wektor3D> &tablica_wspolrzednych) const;
+
+public:
+  /*!
+   * \brief Konstruktor trójparametryczny prostopadłościanu
+   *
+   * Konstruktor tworzy prostopadłościan o zadanych w argumentach 
+   * wymiarach.
+   * \param[in] A_bok - długość boku w osi X
+   * \param[in] B_bok - długość boku w osi Y
+   * \param[in] C_bok - długość boku w osi Z
+   */
+  Prostopadloscian(double A_bok,
+		   double B_bok,
+		   double C_bok);
+  void Narysuj() override;
 };
 
 

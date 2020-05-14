@@ -73,7 +73,7 @@ protected:
   Wektor<TYP,ROZMIAR> tab[ROZMIAR];
  
 public:
-/*!
+  /*!
    * \brief Przeciążenie nawiasów klamrowych
    *
    * Pozawala na odwoływanie się do wybranego wektora macierzy
