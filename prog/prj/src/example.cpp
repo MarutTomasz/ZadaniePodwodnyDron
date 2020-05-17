@@ -7,6 +7,9 @@
 #include "Dron.hh"
 #include "InterfejsDrona.hh"
 #include "GraniastoslupHex.hh"
+#include "Powierzchnia.hh"
+#include "Dno.hh"
+#include "Tafla.hh"
 
 using std::vector;
 using drawNS::Point3D;
@@ -21,17 +24,26 @@ void wait4key() {
 }
 
 int main() {
-  std::shared_ptr<drawNS::Draw3DAPI> api(new APIGnuPlot3D(-100,100,-100,100,-100,100,0));
-  Dron R2D2(30,40,20);
+  double A = 100;
+  double B = 10;
+  std::shared_ptr<drawNS::Draw3DAPI> api(new APIGnuPlot3D(-A,A,-A,A,-A,A,0));
+  
+  Dron R2D2(3*B,4*B,2*B);
   R2D2.set_api(api);
-  GraniastoslupHex R2(15,20);
-  R2.set_api(api);
+  Dno Nr1(A);
+  Tafla Nr2(A);
+  Nr1.set_api(api);
+  Nr2.set_api(api);
+
   int liczba = 0;
   double kat;
   double odleglosc;
+  Nr1.Narysuj();
+  Nr1.Narysuj();
+  Nr2.Narysuj();
   R2D2.Rysuj();
-  wait4key();
-  /*
+  
+ 
   while (liczba != 3){
     cout << "Menu wyboru: \n 1 - obroc drona o kat\n 2 - przesun drona\n 3 - zakoncz dzialanie\n\n Twoj wybor:    ";
     cin >> liczba;
@@ -40,7 +52,7 @@ int main() {
     case 1: {
       cout << "Podaj kat obrotu:    ";
       cin >> kat;
-      R2D2.Obrot_Animowany(kat);
+      R2D2.Obrot_Z_Animowany(kat);
       break;
     }
       
@@ -58,7 +70,7 @@ int main() {
       break;
     }
     }
-    } */ 
+  } 
   return 0;
 }
 

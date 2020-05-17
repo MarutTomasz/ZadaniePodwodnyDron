@@ -1,8 +1,5 @@
 #ifndef GRANIASTOSLUPHEX
 #define GRANIASTOSLUPHEX
-
-#include "Obiekt3D.hh"
-
 /*!
  * \file
  * \brief Definicja klasy GraniastoslupHex
@@ -11,6 +8,15 @@
  * dziedzicy publicznie po klasie Obiekt3D\n
  * Zawiera także deklaracje metod operujących na 
  * graniastosłupie prawidłowym sześciokątnym.
+ */
+
+#include "Obiekt3D.hh"
+
+/*!
+ * \brief Modeluje pojęcie GraniastoslupHex
+ *
+ * Klasy GraniastoslupHex dziedziczy publicznie po klasie Obiekt3D.\n
+ * Opisuje graniastosłup prawidłowy sześciokątmny w przestrzeni.
  */
 class GraniastoslupHex : public Obiekt3D {
 protected:
@@ -35,14 +41,6 @@ protected:
    */
   GraniastoslupHex(); 
   /*!
-   * \brief Metoda orientująca wektor
-   *
-   * Metoda orientuje wektor z układu współrzędnych zintegrowanych z obiektem
-   * na globalny układ współrzędnych
-   * \param[in] W - Orientowany wektor.
-   */
-  void Orientuj_wektor(Wektor3D &W) const;
-  /*!
    * \brief Uzyskiwanie wspołrzędnych wierzchołków
    *
    * Metoda uzyskuje współrzędne wierzchiłków w układzie globalnym
@@ -52,6 +50,8 @@ protected:
    * względem globalnego układu współrzędnych.
    */
   void Uzyskaj_wspolrzedne(std::vector<Wektor3D> &tablica_wspolrzednych) const;
+
+  void Orientuj_wektor(Wektor3D &W) const override;
 
 public:
   /*!

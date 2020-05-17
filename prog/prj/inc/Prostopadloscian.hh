@@ -1,8 +1,5 @@
 #ifndef PROSTOPADLOSCIAN
 #define PROSTOPADLOSCIAN
-
-#include "Obiekt3D.hh"
-
 /*!
  * \file
  * \brief Definicja klasy Prostopadloscian
@@ -11,6 +8,17 @@
  * dziedzicy publicznie po klasie Obiekt3D \n
  * Zawiera także deklaracje metod operujących 
  * na prostopadłościanie.
+ */
+
+#include "Obiekt3D.hh"
+#include "SWektor.hh"
+#include "MacierzOb.hh"
+
+/*!
+ * \brief Modeluje pojęcie Prostopadloscian
+ *
+ * Klasa Prostopadloscian dziedziczy publicznie po klasie Obiekt3D.\n
+ * Reprezentuje ona prostopadłościan w przestrzeni.
  */
 class Prostopadloscian : public Obiekt3D {
 protected:
@@ -41,20 +49,14 @@ protected:
    * Kontruktor tworzy prostopadloscian bez inicjacji wymiarów.
    */
   Prostopadloscian(); 
-  /*!
-   * \brief Metoda orientująca wektor
-   *
-   * Metoda orientuje wektor z układu współrzędnych zintegrowanych z obiektem
-   * na globalny układ współrzędnych
-   * \param[in] W - Orientowany wektor.
-   */
-  void Orientuj_wektor(Wektor3D &W) const;
+
+  void Orientuj_wektor(Wektor3D &W) const override;
   /*!
    * \brief Uzyskiwanie wspołrzędnych wierzchołków
    *
    * Metoda uzyskuje współrzędne wierzchiłków w układzie globalnym
-   * wykorzystując relację między długością boków, orientacją i 
-   * punktem odniesienia;
+   * wykorzystując relację między długością boków i orientacją i 
+   * punktem środka obiektu.
    * \param[in] tablica_wspolrzednych - tablica na współrzędne wierzchołków
    * względem globalnego układu współrzędnych.
    */
@@ -73,7 +75,19 @@ public:
   Prostopadloscian(double A_bok,
 		   double B_bok,
 		   double C_bok);
+  /*!
+   * \brief Pobranie wybranego boku obiektu
+   *
+   * Metoda pobiera długość wskazanego boku.\n
+   * 1 - Bok A, który leży w osi X\n
+   * 2 - Bok B, który leży w osi Y\n
+   * 3 - Bok C, który leży w osi Z\n
+   * \param[in] bok - określa który bok mamy pobrać.
+   * \return Długość wskazanego boku.
+   */
+  double get_bok(double bok) const;
   void Narysuj() override;
+  
 };
 
 

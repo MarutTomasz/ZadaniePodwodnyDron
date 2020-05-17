@@ -24,7 +24,7 @@ using std::endl;
  * \brief Modeluje pojęcie Obiekt3D
  *
  * Zawiera elementy charakteryzujące każdy
- * obiekt w przestrzni i deklaracje funkcji
+ * obiekt w przestrzni i deklaracje metod
  * do zmiany tych elementów
  */
 class Obiekt3D {
@@ -48,7 +48,7 @@ protected:
    * przez gnuplota to zapamiętywania 
    * obiektów;
    */
-  int ID;
+  int ID = 0;
   /*!
    * \brief wskaznik na gnuplota
    *
@@ -64,6 +64,14 @@ protected:
    * stworzyć obiektu 3D. 
    */
   Obiekt3D() {};
+  /*!
+   * \brief Metoda orientująca wektor
+   *
+   * Metoda orientuje wektor wierzchołka z układu współrzędnych 
+   * zintegrowanych z obiektem na globalny układ współrzędnych.
+   * \param[in] W - Orientowany wektor.
+   */
+  virtual void Orientuj_wektor(Wektor3D &W) const =0;
 public:
   /*!
    * \brief Ustawia nowy wektor środka obiektu
@@ -72,15 +80,15 @@ public:
    * na nowe położenie w przestrzeni.
    * \param[in] Wektor - nowy wektor położenia obiektu.
    */
-  void ustaw_pozycje(const Wektor3D &Wektor) { Pozycja_srodka = Wektor; }
+  void set_pozycja_srodka(const Wektor3D &Wektor) { Pozycja_srodka = Wektor; }
   /*!
-   * \brief Ustawia nowy macierz orientacje obiektu
+   * \brief Ustawia nowa macierz orientacji obiektu
    * 
    * Metoda zmienia macierz orientacji obiektu w przestrzeni, tzn
    * obraca obiekt.
    * \param[in] Macierz - nowa macierz orientacji obiektu w przestrzeni.
    */
-  void ustaw_orientacje(const MacierzOb &Macierz) { Orientacja = Macierz; }
+  void set_orientacja(const MacierzOb &Macierz) { Orientacja = Macierz; }
   /*!
    * \brief Ustawia wskaznik na gnuplot
    * 
@@ -89,10 +97,31 @@ public:
    */
   void set_api(std::shared_ptr<drawNS::Draw3DAPI> API) {api = API;}
   /*!
+   * \brief Pobiera wektor środka obiektu
+   *
+   * Metoda pobiera wektor położenia obiektu
+   * \return Wektor który pokazuje pozycje środka obiektu w globalnym układzie współrzędnych.
+   */
+  Wektor3D get_pozycja_srodka() const {return Pozycja_srodka;}
+  /*!
+   * \brief Pobiera macierz orientacji obiektu
+   * 
+   * Metoda pobiera macierz orientacji obiektu w przestrzeni.
+   * \return Macierz który pokazuje orientacje obiektu w globalnym układzie współrzędnych.
+   */
+   MacierzOb get_orientacja() const {return Orientacja;}
+  /*!
+   * \brief Pobiera wskaznik na gnuplot z obiektu
+   * 
+   * Metoda pobiera wskaznik na gnuplot
+   * \return Wskażnik na okno gnuplota
+   */
+  std::shared_ptr<drawNS::Draw3DAPI> get_api() const {return api;}
+  /*!
    * \brief Rysowanie obiektu
    *
    * Funkcja wykonuje rysunek obiektu w zadanym programie zewnętrznym.
-   * Wykorzystywane są wektory położenia środka obiekty i punktu odniesienia
+   * Wykorzystywane są wektor położenia środka obiektu
    * oraz macierz orientacji obiektu w przestrzeni.
    */
   virtual void Narysuj() = 0;

@@ -1,5 +1,14 @@
 #ifndef MACIERZ_OB
 #define MACIERZ_OB
+/*!
+ * \file
+ * \brief Definicja klasy MacierzOb
+ *
+ * Plik zawiera definicje klasy MacierzOb, która
+ * dziedzicy publicznie po klasie MacierzKw \n
+ * Zawiera także deklaracje metod działających 
+ * na macierzach obrotu.
+ */
 
 #include "SMacierzKw.hh"
 
@@ -11,15 +20,12 @@
  */
 #define PI 3.141592653589
 
-
 /*!
- * \file
- * \brief Definicja klasy MacierzOb
+ * \brief Modeluje pojęcie MacierzOb
  *
- * Plik zawiera definicje klasy MacierzOb, która
- * dziedzicy publicznie po klasie MacierzKw \n
- * Zawiera także deklaracje metod działających 
- * na macierzach obrotu.
+ * Klasa MacierzOb dziedziczy publicznie po klasie MacierzKw<double,3>.\n
+ * Pozwala na zadawanie obrotów figur w przestrzeni i ustalanie 
+ * ich orientacji względem przyjętego układu współrzędnych.
  */
 class MacierzOb: public Macierz3D {
 public:

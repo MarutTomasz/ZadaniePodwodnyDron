@@ -5,7 +5,7 @@
  * \brief Definicja abstrakcyjnej klasy InterfejsDrona
  *
  * Plik zawiera definicje klasy InterfejsDrona.\n
- * Zawiera także deklaracje metod i funkcji służących do 
+ * Zawiera także deklaracje metod służących do 
  * obsługi drona.
  */
 #include <unistd.h>
@@ -16,8 +16,8 @@
 /*!
  * \brief Modeluje pojęcie InterfejsDrona
  *
- * Zawiera deklaracje funkcji służących
- * do obsługi drona.
+ * Zawiera deklaracje funkcji służących do
+ * obsługi drona.
  */
 class InterfejsDrona {
 protected:
@@ -57,8 +57,7 @@ protected:
    * \brief Metoda przesuwania drona
    *
    * Metoda dokonująca przesuwania drona 
-   * wzdłuż osi X o zadaną odległość pod 
-   * zadanym kątem.
+   * wzdłuż lokalnej osi X o zadaną odległość.
    * \param[in] odleglosc - odległość, o jaka przesuwany jest dron.
    */
   virtual void Przesun(double odleglosc) = 0;
@@ -67,7 +66,7 @@ public:
    * \brief Płynięcie drona z animacją
    *
    * Metoda animująca pływanie drona 
-   * wzdłuż osi X o zadaną odległość pod 
+   * wzdłuż osi X (lokalną oś) o zadaną odległość pod 
    * zadanym kątem.
    * \param[in] odleglosc - odległość, o jaka musi przesunąć się dron.
    * \param[in] kat - kąt, pod jakim musi przesunąć się dron. 
@@ -80,7 +79,7 @@ public:
    * osi Z o zadaną ilość stopi.
    * \param[in] stopnie - kąt obrotu. 
    */
-  virtual void Obrot_Animowany(double stopnie) = 0;
+  virtual void Obrot_Z_Animowany(double stopnie) = 0;
   
 };
 

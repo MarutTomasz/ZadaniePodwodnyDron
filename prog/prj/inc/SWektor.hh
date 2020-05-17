@@ -137,7 +137,6 @@ public:
    * \return Zwraca wektor po dokonaniu operacji dzielenia.
    */
   Wektor<TYP,ROZMIAR> operator / (TYP liczba) const;
-
   /*!
    * \brief Przeciążenie operatora porównania
    *
@@ -158,7 +157,6 @@ public:
    * \retval false - w przeciwnym przypadku.
    */
   bool operator != (const Wektor<TYP,ROZMIAR> &W) const;
-
   /*!
    * \brief Wyliczenie długości wektora
    *
@@ -168,7 +166,6 @@ public:
    * \return Zwraca długość wektora.
    */
   double dlugosc() const;
-
   /*!
    * \brief Zamiana miejscami elementow wektora
    *
@@ -238,7 +235,6 @@ Wektor<TYP,ROZMIAR> operator * (TYP liczba, const Wektor<TYP,ROZMIAR> &W);
  */
 template<class TYP, unsigned int ROZMIAR>
 void wyswietl_wektor_bledu(const Wektor<TYP,ROZMIAR> &W);
-
 
 /*!
  * \brief Definicja typu Wektora
