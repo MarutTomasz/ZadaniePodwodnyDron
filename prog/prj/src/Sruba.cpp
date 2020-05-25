@@ -60,7 +60,7 @@ void Sruba::Orientuj_wektor(Wektor3D &W)const {
 void Sruba::Narysuj() {
   std::vector<Wektor3D> tab;
   Uzyskaj_wspolrzedne(tab);
-  if (ID != 0)
+  if (ID != -1)
     api->erase_shape(ID);
 
   ID = api->draw_polyhedron(vector<vector<Point3D> > {{

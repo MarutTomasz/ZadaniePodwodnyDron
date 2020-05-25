@@ -48,7 +48,7 @@ protected:
    * przez gnuplota to zapamiętywania 
    * obiektów;
    */
-  int ID = 0;
+  int ID = -1;
   /*!
    * \brief wskaznik na gnuplota
    *

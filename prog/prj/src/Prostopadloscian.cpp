@@ -53,7 +53,7 @@ void Prostopadloscian::Uzyskaj_wspolrzedne(std::vector<Wektor3D> &tablica_wspolr
 void Prostopadloscian::Narysuj() {
   std::vector<Wektor3D> tab;
   (*this).Uzyskaj_wspolrzedne(tab);
-  if (ID != 0)
+  if (ID != -1)
     api->erase_shape(ID);
 
   ID = api->draw_polyhedron(vector<vector<Point3D> > {{

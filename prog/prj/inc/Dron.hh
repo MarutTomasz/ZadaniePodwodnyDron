@@ -12,7 +12,8 @@
 #include "InterfejsDrona.hh"
 #include "Prostopadloscian.hh"
 #include "Sruba.hh"
-
+#include "Przeszkoda.hh"
+ 
 /*!
  * \brief Modeluje pojęcie Dron
  *
@@ -21,7 +22,7 @@
  * Zawiera deklaracje metod służących
  * do obsługi drona.
  */
-class Dron: public Prostopadloscian, public InterfejsDrona {
+class Dron: public Prostopadloscian, public InterfejsDrona, public Przeszkoda {
 protected:
   /*!
    * \brief Pole prawej śruby drona
@@ -90,6 +91,7 @@ public:
   void Plyn(double odleglosc, double kat) override;
   void Obrot_Z_Animowany(double stopnie) override;
   
+  bool czy_kolizja(std::shared_ptr<InterfejsDrona> Inter) override;
   
 };
 

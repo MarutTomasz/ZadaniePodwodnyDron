@@ -176,3 +176,10 @@ void Dron::Rysuj() {
   Lewa.Narysuj();
   Prawa.Narysuj();
 }
+
+
+bool Dron::czy_kolizja(std::shared_ptr<InterfejsDrona> Inter) {
+  cout << "YES or NO" << endl;
+  return 1;
+}
+  

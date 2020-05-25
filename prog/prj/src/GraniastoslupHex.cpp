@@ -55,7 +55,7 @@ void GraniastoslupHex::Uzyskaj_wspolrzedne(std::vector<Wektor3D> &tablica_wspolr
 void GraniastoslupHex::Narysuj() {
   std::vector<Wektor3D> tab;
   Uzyskaj_wspolrzedne(tab);
-  if (ID != 0)
+  if (ID != -1)
     api->erase_shape(ID);
 
   ID = api->draw_polyhedron(vector<vector<Point3D> > {{

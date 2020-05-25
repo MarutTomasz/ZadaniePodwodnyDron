@@ -34,7 +34,7 @@ inc/Prostopadloscian.hh: inc/Obiekt3D.hh
 ${OBJ}/Dron.o: src/Dron.cpp inc/Dron.hh inc/InterfejsDrona.hh inc/Prostopadloscian.hh inc/Sruba.hh
 	g++ ${CPPFLAGS} -o ${OBJ}/Dron.o src/Dron.cpp
 
-inc/Dron.hh: inc/InterfejsDrona.hh
+inc/Dron.hh: inc/InterfejsDrona.hh inc/Przeszkoda.hh
 	touch inc/Dron.hh
 
 ${OBJ}/GraniastoslupHex.o: src/GraniastoslupHex.cpp inc/GraniastoslupHex.hh inc/Obiekt3D.hh
