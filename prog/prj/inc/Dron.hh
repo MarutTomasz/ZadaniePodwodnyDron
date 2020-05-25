@@ -86,7 +86,7 @@ public:
    * 
    * Metoda rysuje po kolei każdy element drona; 
    */
-  void Rysuj();
+  void Narysuj() override;
   
   void Plyn(double odleglosc, double kat) override;
   void Obrot_Z_Animowany(double stopnie) override;

@@ -25,7 +25,7 @@ void wait4key() {
 
 int main() {
   double A = 100;
-  double B = 10;
+  double B = 15;
   std::shared_ptr<drawNS::Draw3DAPI> api(new APIGnuPlot3D(-A,A,-A,A,-A,A,0));
   Dron R2D2(3*B,4*B,2*B);
   Dno Nr1(A);
@@ -40,7 +40,7 @@ int main() {
 
   Nr1.Narysuj();
   Nr2.Narysuj();
-  R2D2.Rysuj();
+  R2D2.Narysuj();
   
  
   while (znak != 'q'){

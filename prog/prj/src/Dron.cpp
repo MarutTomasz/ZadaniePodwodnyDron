@@ -76,14 +76,14 @@ void Dron::Obrot_Z_Animowany(double kat) {
       kat = kat - 1;
       Obrot_Z(1); 
       Lewa.Obracaj();
-      Rysuj();
+      Narysuj();
       usleep(10000);
     }
     else if (kat <= -1){
       Obrot_Z(-1);
       Prawa.Obracaj();
       kat = kat + 1;
-      Rysuj();
+      Narysuj();
       usleep(10000);
     }
     else {
@@ -91,7 +91,7 @@ void Dron::Obrot_Z_Animowany(double kat) {
       Prawa.Obracaj();
       Lewa.Obracaj();
       kat = 0;
-      Rysuj();
+      Narysuj();
       usleep(10000);
     }
   }
@@ -104,19 +104,19 @@ void Dron::Plyn(double odleglosc, double kat) {
     if (kat >= 1) {
       kat = kat - 1;
       Obrot_Y(-1);
-      Rysuj();
+      Narysuj();
       usleep(10000);
     }
     else if (kat <= -1){
       Obrot_Y(1);
       kat = kat + 1;
-      Rysuj();
+      Narysuj();
       usleep(10000);
     }
     else {
       Obrot_Y(kat);
       kat = 0;
-      Rysuj();
+      Narysuj();
       usleep(10000);
     }
   }
@@ -127,7 +127,7 @@ void Dron::Plyn(double odleglosc, double kat) {
       Przesun(1);
       Prawa.Obracaj();
       Lewa.Obracaj();
-      Rysuj();
+      Narysuj();
       usleep(7000);
     }
     else if(odleglosc <= -1) {
@@ -135,7 +135,7 @@ void Dron::Plyn(double odleglosc, double kat) {
       Przesun(-1);
       Prawa.Obracaj();
       Lewa.Obracaj();
-      Rysuj();
+      Narysuj();
       usleep(7000);
     }
     else {
@@ -143,7 +143,7 @@ void Dron::Plyn(double odleglosc, double kat) {
       Prawa.Obracaj();
       Lewa.Obracaj();
       odleglosc = 0;
-      Rysuj();
+      Narysuj();
       usleep(7000);
     }  
   }
@@ -152,27 +152,27 @@ void Dron::Plyn(double odleglosc, double kat) {
     if (kat_kopia >= 1) {
       kat_kopia = kat_kopia - 1;
       Obrot_Y(1);
-      Rysuj();
+      Narysuj();
       usleep(10000);
     }
     else if (kat_kopia <= -1){
       Obrot_Y(-1);
       kat_kopia = kat_kopia + 1;
-      Rysuj();
+      Narysuj();
       usleep(10000);
     }
     else {
       Obrot_Y(-kat_kopia);
       kat_kopia = 0;
-      Rysuj();
+      Narysuj();
       usleep(10000);
     }
   }   
 }
 
 
-void Dron::Rysuj() {
-  Narysuj();
+void Dron::Narysuj() {
+  Prostopadloscian::Narysuj();
   Lewa.Narysuj();
   Prawa.Narysuj();
 }
