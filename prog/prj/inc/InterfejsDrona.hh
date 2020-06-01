@@ -9,9 +9,7 @@
  * obsługi drona.
  */
 #include <unistd.h>
-#include <math.h>
 #include "MacierzOb.hh"
-#include "SWektor.hh"
 
 /*!
  * \brief Modeluje pojęcie InterfejsDrona
@@ -21,6 +19,10 @@
  */
 class InterfejsDrona {
 protected:
+  /*!
+   * \brief Promień kuli opisanej na dronie
+   */
+  double promien;
   /*!
    * \brief Konstruktor bezparametryczny interfejsu
    *
@@ -62,9 +64,14 @@ protected:
    */
   virtual void Przesun(double odleglosc) = 0;
 
-  double promien;
-
 public:
+  /*!
+   * \brief Metoda zwracająca promień
+   *
+   * Metoda zwraca promień kuli opisanej na dronie.
+   * \return - promień kuli. 
+   */
+  double Wez_Promien() { return promien; }
   /*!
    * \brief Płynięcie drona z animacją
    *
@@ -83,11 +90,24 @@ public:
    * \param[in] stopnie - kąt obrotu. 
    */
   virtual void Obrot_Z_Animowany(double stopnie) = 0;
-
+  /*!
+   * \brief Metoda przesuwania drona
+   *
+   * Metoda dokonująca przesuwania drona 
+   * na punkt o zadanych współrzędnych.
+   * \param[in] X - współrzędna X nowego środka drona.
+   * \param[in] Y - współrzędna Y nowego środka drona.
+   * \param[in] Z - współrzędna Z nowego środka drona.
+   */
   virtual void Przesun(double X, double Y, double Z) =0;
+  /*!
+   * \brief Metoda przesuwania drona
+   *
+   * Metoda dokonująca przesuwania drona 
+   * na punkt o współrzędnych opisanych wektorem.
+   * \param[in] Wektor - wektor współrzędnych nowego środka drona.
+   */
   virtual void Przesun(const Wektor3D Wektor) =0;
-
-  double Wez_Promien() { return promien; }
 };
 
   

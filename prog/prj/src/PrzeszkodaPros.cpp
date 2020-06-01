@@ -1,4 +1,12 @@
 #include "PrzeszkodaPros.hh"
+/*!
+ * \file
+ * \brief Definicja metod klasy PrzeszkodaPros
+ *
+ * Plik zawiera definicje metod działających 
+ * na obiektach klasy PrzeszkodaPros.
+ */
+
 
 PrzeszkodaPros::PrzeszkodaPros(double A_bok,double B_bok,double C_bok) {
   if(A_bok < 0){

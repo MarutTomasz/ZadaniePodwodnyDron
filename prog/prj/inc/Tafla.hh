@@ -5,18 +5,19 @@
  * \brief Definicja klasy Tafla
  *
  * Plik zawiera definicje klasy Tafla, która
- * dziedzicy publicznie po klasie Powierzchnia \n
+ * dziedzicy publicznie po klasach Powierzchnia i Przeszkoda \n
  * Zawiera także deklaracje metod operujących 
  * na powierzchni reprezentującej tafle wody.
  */
 
+#include "Przeszkoda.hh"
 #include "Powierzchnia.hh"
 #include "Dron.hh"
 
 /*!
  * \brief Modeluje pojęcie Tafla
  *
- * Klasa Tafla dziedziczy publicznie po klasie Powierzchnia.\n
+ * Klasa Tafla dziedziczy publicznie po klasach Powierzchnia i Przeszkoda.\n
  * Reprezentuje ona płaszczyznę tafli wody zbiornika, w którym ma pływać dron.
  */
 class Tafla : public Powierzchnia, public Przeszkoda {

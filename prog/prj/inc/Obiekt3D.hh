@@ -10,10 +10,9 @@
  * obiekt w przestrzeni trójwymiarowej.
  */
 
-#include <iostream>
 #include "Dr3D_gnuplot_api.hh"
-#include "SWektor.hh"
 #include "MacierzOb.hh"
+
 using std::vector;
 using drawNS::Point3D;
 using drawNS::APIGnuPlot3D;

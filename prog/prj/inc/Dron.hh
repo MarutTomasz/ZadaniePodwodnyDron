@@ -13,12 +13,12 @@
 #include "Prostopadloscian.hh"
 #include "Sruba.hh"
 #include "Przeszkoda.hh"
-#include <memory>
 /*!
  * \brief Modeluje pojęcie Dron
  *
  * Definiuje klase Dron, ktora dziedziczy publicznie
- * po klasie InterfejsDrona i Prostopadloscian.\n
+ * po klasach InterfejsDrona, Prostopadloscian i
+ * Przeszkoda.\n
  * Zawiera deklaracje metod służących
  * do obsługi drona.
  */
@@ -54,7 +54,12 @@ protected:
    * konstrukcji drona.
    */
   Wektor3D Odsuniecie_sruby_prawej;
-
+  /*!
+   * \brief Wskazniki na przeszkody
+   *
+   * Pole przechowujące wskaźniki na wszystkie 
+   * przzeszkody znajdujące się w zbiorniku.
+   */
   std::vector<std::shared_ptr<Przeszkoda> > kolekcja_przeszkod;
   /*!
    * \brief Usunięcie konstruktora bezparametrycznego
@@ -89,12 +94,13 @@ public:
    * Metoda rysuje po kolei każdy element drona; 
    */
   void Narysuj() override;
-  
+  /*!
+   * \brief Metoda inicjalizuje w dronie wskaźnik na kolekcje przeszkód.
+   */
+  void set_kolekcja_przeszkod( std::vector<std::shared_ptr<Przeszkoda> > kolekcja);
   void Plyn(double odleglosc, double kat) override;
   void Obrot_Z_Animowany(double stopnie) override;
-  
   bool czy_kolizja(InterfejsDrona *Inter) override;
-  void set_kolekcja_przeszkod( std::vector<std::shared_ptr<Przeszkoda> > kolekcja);
   void Przesun(double X, double Y, double Z) override;
   void Przesun(const Wektor3D Wektor) override;
 

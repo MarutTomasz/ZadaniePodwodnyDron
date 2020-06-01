@@ -35,7 +35,7 @@ using std::scientific;
  * przechowywanych zmiennych oraz rozmiarem (ilością elementów). \n
  * \param TYP - typ zmiennych tworzących wektor.
  * \param ROZMIAR - ilość zmiennych tworzących wektor.
-*/
+ */
 template<class TYP, unsigned int ROZMIAR>
 class Wektor {
   /*!

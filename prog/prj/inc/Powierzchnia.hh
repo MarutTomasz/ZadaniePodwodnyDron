@@ -11,8 +11,6 @@
  */
 
 #include "Obiekt3D.hh"
-#include "SWektor.hh"
-#include "MacierzOb.hh"
 
 /*!
  * \brief Modeluje pojęcie Powierzchnia

@@ -2,17 +2,13 @@
 /*!
  * \file
  * \brief Definicja metod klasy Dno
- *
- * Zawiera także definicje metod służących do 
- * opisu dna.
  */
 
 Dno::Dno(double wymiar) {
   Wektor3D W(0.0,0.0,(-1* wymiar));
   Pozycja_srodka = W;
   wymiar_palety = wymiar;
-  string K = "grey";
-  kolor = K;
+  kolor = "grey";
 }
 
 bool Dno::czy_kolizja(InterfejsDrona *Inter) {
