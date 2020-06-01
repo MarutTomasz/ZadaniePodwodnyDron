@@ -61,6 +61,9 @@ protected:
    * \param[in] odleglosc - odległość, o jaka przesuwany jest dron.
    */
   virtual void Przesun(double odleglosc) = 0;
+
+  double promien;
+
 public:
   /*!
    * \brief Płynięcie drona z animacją
@@ -80,7 +83,11 @@ public:
    * \param[in] stopnie - kąt obrotu. 
    */
   virtual void Obrot_Z_Animowany(double stopnie) = 0;
-  
+
+  virtual void Przesun(double X, double Y, double Z) =0;
+  virtual void Przesun(const Wektor3D Wektor) =0;
+
+  double Wez_Promien() { return promien; }
 };
 
   

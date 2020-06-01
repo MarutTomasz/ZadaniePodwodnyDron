@@ -19,6 +19,7 @@ using drawNS::Point3D;
 using drawNS::APIGnuPlot3D;
 using std::cout;
 using std::endl;
+using std::string;
 
 /*!
  * \brief Modeluje pojęcie Obiekt3D
@@ -57,6 +58,14 @@ protected:
    */
   std::shared_ptr<drawNS::Draw3DAPI> api;
   /*!
+   * \brief Pole opisujące kolor rysowanej powierzchni 
+   *
+   * Pole zapamiętuje i podaje do metody rysującej kolor, 
+   * jakiego ma użyć gnuplot przy rysowaniu tej powierzchni.
+   * Domyślnie przyjmuje kolor czarny.
+   */
+  string kolor = "black";
+  /*!
    * \brief Bezparametryczny konstruktor obiektu.
    *
    * Konstruktor wykorzystywany przy tworzeniu 
@@ -82,6 +91,18 @@ public:
    */
   void set_pozycja_srodka(const Wektor3D &Wektor) { Pozycja_srodka = Wektor; }
   /*!
+   * \brief Ustawia nowy wektor środka obiektu
+   *
+   * Metoda zmienia wektor położenia obiektu, tzn. przesuwa obiekt 
+   * na nowe położenie w przestrzeni.
+   * \param[in] X - nowa współrzędna X położenia obiektu.
+   * \param[in] Y - nowa współrzędna Y położenia obiektu.
+   * \param[in] Z - nowa współrzędna Z położenia obiektu.
+   */
+  void set_pozycja_srodka(double X, double Y, double Z) { Pozycja_srodka[0] = X;
+                                                          Pozycja_srodka[1] = Y;
+                                                          Pozycja_srodka[2] = Z; }
+  /*!
    * \brief Ustawia nowa macierz orientacji obiektu
    * 
    * Metoda zmienia macierz orientacji obiektu w przestrzeni, tzn
@@ -96,6 +117,7 @@ public:
    * \param[in] API - wskaznik na gnuplot.
    */
   void set_api(std::shared_ptr<drawNS::Draw3DAPI> API) {api = API;}
+  void set_kolor(string kolorek) {kolor = kolorek;}
   /*!
    * \brief Pobiera wektor środka obiektu
    *

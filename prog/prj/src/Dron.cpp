@@ -33,6 +33,10 @@ Dron::Dron(double bok_A, double bok_B, double bok_C) {
   Wektor3D Prawy((-A*3/5),(B/4),0.0);
   Odsuniecie_sruby_prawej = Prawy;
   Prawa.set_pozycja_srodka(Prawy);
+  promien = sqrt(pow(A,2) + pow(C/2,2));
+  kolor = "red";
+  Lewa.set_kolor(kolor);
+  Prawa.set_kolor(kolor);
 }
 
 void Dron::set_api(std::shared_ptr<drawNS::Draw3DAPI> API) {
@@ -70,6 +74,21 @@ void Dron::Przesun(double odleglosc) {
   Prawa.Przesun(odleglosc);
 }  
 
+////
+void Dron::Przesun(double X, double Y, double Z) {
+  Wektor3D nowy_srodek(X,Y,Z);      
+  Pozycja_srodka = nowy_srodek;
+  Lewa.set_pozycja_srodka(nowy_srodek + Odsuniecie_sruby_lewej);
+  Prawa.set_pozycja_srodka(nowy_srodek + Odsuniecie_sruby_prawej);
+}  
+
+void Dron::Przesun(const Wektor3D Wektor) {
+  Pozycja_srodka = Wektor;
+  Lewa.set_pozycja_srodka(Wektor + Odsuniecie_sruby_lewej);
+  Prawa.set_pozycja_srodka(Wektor + Odsuniecie_sruby_prawej);
+}  
+
+////
 void Dron::Obrot_Z_Animowany(double kat) {
   while (kat){
     if (kat >= 1) {
@@ -99,7 +118,7 @@ void Dron::Obrot_Z_Animowany(double kat) {
 
 void Dron::Plyn(double odleglosc, double kat) {
   double kat_kopia = kat;
-
+  int kolizja = 0;
   while (kat){
     if (kat >= 1) {
       kat = kat - 1;
@@ -122,11 +141,20 @@ void Dron::Plyn(double odleglosc, double kat) {
   }
 
   while(odleglosc) {
+    kolizja = 0;
     if (odleglosc >= 1) {
       odleglosc = odleglosc - 1;
       Przesun(1);
       Prawa.Obracaj();
       Lewa.Obracaj();
+      for (auto elem : kolekcja_przeszkod) {
+	if( elem->czy_kolizja(this)){
+	  cout << "Możliwe nastapienie kolizji. Ruch wstrzymany" << endl;
+	  Przesun(-1);
+	  kolizja = 1;
+	  break;
+	}
+      }     
       Narysuj();
       usleep(7000);
     }
@@ -135,6 +163,14 @@ void Dron::Plyn(double odleglosc, double kat) {
       Przesun(-1);
       Prawa.Obracaj();
       Lewa.Obracaj();
+      for (auto elem : kolekcja_przeszkod) {
+	if( elem->czy_kolizja(this)) {
+   	  cout << "Możliwe nastapienie kolizji. Ruch wstrzymany" << endl;
+	  Przesun(1);
+	  kolizja = 1;
+	  break;
+	}
+      }
       Narysuj();
       usleep(7000);
     }
@@ -142,10 +178,20 @@ void Dron::Plyn(double odleglosc, double kat) {
       Przesun(odleglosc);
       Prawa.Obracaj();
       Lewa.Obracaj();
+      for (auto elem : kolekcja_przeszkod) {
+	if( elem->czy_kolizja(this)){
+	  cout << "Możliwe nastapienie kolizji. Ruch wstrzymany" << endl;
+	  Przesun(-1 * odleglosc);
+	  kolizja = 1;
+	  break;
+	}
+      }
       odleglosc = 0;
       Narysuj();
       usleep(7000);
     }  
+    if(kolizja)
+      break;
   }
       
   while (kat_kopia){
@@ -178,8 +224,16 @@ void Dron::Narysuj() {
 }
 
 
-bool Dron::czy_kolizja(std::shared_ptr<InterfejsDrona> Inter) {
-  cout << "YES or NO" << endl;
-  return 1;
+bool Dron::czy_kolizja(InterfejsDrona *Inter) {
+  if(Inter != this){
+    Dron *R2D2 = static_cast<Dron*> (Inter);
+    double promienie = this->Wez_Promien() + R2D2->Wez_Promien();
+    Wektor3D odleglosc = this->get_pozycja_srodka() - R2D2->get_pozycja_srodka();  
+    return (promienie > odleglosc.dlugosc());
+  }
+  return 0;
 }
-  
+
+void Dron::set_kolekcja_przeszkod( std::vector<std::shared_ptr<Przeszkoda> > kolekcja) {
+  kolekcja_przeszkod = kolekcja;
+}

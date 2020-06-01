@@ -11,6 +11,7 @@
  */
 
 #include "Powierzchnia.hh"
+#include "Dron.hh"
 
 /*!
  * \brief Modeluje pojęcie Tafla
@@ -18,7 +19,7 @@
  * Klasa Tafla dziedziczy publicznie po klasie Powierzchnia.\n
  * Reprezentuje ona płaszczyznę tafli wody zbiornika, w którym ma pływać dron.
  */
-class Tafla : public Powierzchnia {
+class Tafla : public Powierzchnia, public Przeszkoda {
 public:
   /*!
    * \brief Usunięcie bezparametrycznego kontrukotra tafli
@@ -33,6 +34,7 @@ public:
    * \param[in] wielkosc_palety - rozmiar osi gnuplota od 0 do MAX.
    */
   Tafla(double wielkosc_palety);
+  bool czy_kolizja(InterfejsDrona *Inter) override;
 
 };
 

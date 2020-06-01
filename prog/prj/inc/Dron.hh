@@ -13,7 +13,7 @@
 #include "Prostopadloscian.hh"
 #include "Sruba.hh"
 #include "Przeszkoda.hh"
- 
+#include <memory>
 /*!
  * \brief Modeluje pojęcie Dron
  *
@@ -53,7 +53,9 @@ protected:
    * między dronem z śrubą. Ustalane jednokrotnie podczas
    * konstrukcji drona.
    */
-  Wektor3D Odsuniecie_sruby_prawej;  
+  Wektor3D Odsuniecie_sruby_prawej;
+
+  std::vector<std::shared_ptr<Przeszkoda> > kolekcja_przeszkod;
   /*!
    * \brief Usunięcie konstruktora bezparametrycznego
    */
@@ -62,7 +64,7 @@ protected:
   void Obrot_X(double stopnie) override;
   void Obrot_Y(double stopnie) override;
   void Przesun(double odleglosc) override;
-
+ 
 public:
   /*!
    * \brief Kontruktor trójparametryczny drona
@@ -91,8 +93,11 @@ public:
   void Plyn(double odleglosc, double kat) override;
   void Obrot_Z_Animowany(double stopnie) override;
   
-  bool czy_kolizja(std::shared_ptr<InterfejsDrona> Inter) override;
-  
+  bool czy_kolizja(InterfejsDrona *Inter) override;
+  void set_kolekcja_przeszkod( std::vector<std::shared_ptr<Przeszkoda> > kolekcja);
+  void Przesun(double X, double Y, double Z) override;
+  void Przesun(const Wektor3D Wektor) override;
+
 };
 
 #endif

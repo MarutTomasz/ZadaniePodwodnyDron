@@ -1,13 +1,13 @@
 CPPFLAGS= -c -g -Wall -pedantic -std=c++17 -iquote inc
 OBJ=./obj
 
-__start__: ${OBJ} ${OBJ}/example.o ${OBJ}/Dr3D_gnuplot_api.o ${OBJ}/CWektor.o ${OBJ}/CMacierzKw.o ${OBJ}/MacierzOb.o ${OBJ}/Prostopadloscian.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupHex.o ${OBJ}/Sruba.o ${OBJ}/Powierzchnia.o ${OBJ}/Dno.o ${OBJ}/Tafla.o
-	g++ -o example.out ${OBJ}/example.o ${OBJ}/Dr3D_gnuplot_api.o ${OBJ}/CWektor.o ${OBJ}/CMacierzKw.o ${OBJ}/MacierzOb.o ${OBJ}/Prostopadloscian.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupHex.o ${OBJ}/Sruba.o ${OBJ}/Powierzchnia.o ${OBJ}/Dno.o ${OBJ}/Tafla.o -lpthread
+__start__: ${OBJ} ${OBJ}/example.o ${OBJ}/Dr3D_gnuplot_api.o ${OBJ}/CWektor.o ${OBJ}/CMacierzKw.o ${OBJ}/MacierzOb.o ${OBJ}/Prostopadloscian.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupHex.o ${OBJ}/Sruba.o ${OBJ}/Powierzchnia.o ${OBJ}/Dno.o ${OBJ}/Tafla.o ${OBJ}/PrzeszkodaPros.o
+	g++ -o example.out ${OBJ}/example.o ${OBJ}/Dr3D_gnuplot_api.o ${OBJ}/CWektor.o ${OBJ}/CMacierzKw.o ${OBJ}/MacierzOb.o ${OBJ}/Prostopadloscian.o ${OBJ}/Dron.o ${OBJ}/GraniastoslupHex.o ${OBJ}/Sruba.o ${OBJ}/Powierzchnia.o ${OBJ}/Dno.o ${OBJ}/Tafla.o ${OBJ}/PrzeszkodaPros.o -lpthread
 
 ${OBJ}:	
 	mkdir ${OBJ}
 
-${OBJ}/example.o: src/example.cpp inc/Dr3D_gnuplot_api.hh inc/SWektor.hh inc/SMacierzKw.hh inc/MacierzOb.hh inc/Prostopadloscian.hh inc/Dron.hh inc/GraniastoslupHex.hh inc/Sruba.hh inc/Powierzchnia.hh inc/Dno.hh inc/Tafla.hh
+${OBJ}/example.o: src/example.cpp inc/Dr3D_gnuplot_api.hh inc/SWektor.hh inc/SMacierzKw.hh inc/MacierzOb.hh inc/Prostopadloscian.hh inc/Dron.hh inc/GraniastoslupHex.hh inc/Sruba.hh inc/Powierzchnia.hh inc/Dno.hh inc/Tafla.hh inc/PrzeszkodaPros.hh
 	g++ ${CPPFLAGS} -o ${OBJ}/example.o src/example.cpp
 
 ${OBJ}/Dr3D_gnuplot_api.o: src/Dr3D_gnuplot_api.cpp inc/Dr3D_gnuplot_api.hh
@@ -57,6 +57,9 @@ ${OBJ}/Dno.o: src/Dno.cpp inc/Dno.hh  inc/Powierzchnia.hh
 
 ${OBJ}/Tafla.o: src/Tafla.cpp inc/Tafla.hh  inc/Powierzchnia.hh
 	g++ ${CPPFLAGS} -o ${OBJ}/Tafla.o src/Tafla.cpp
+
+${OBJ}/PrzeszkodaPros.o: src/PrzeszkodaPros.cpp inc/PrzeszkodaPros.hh  inc/Prostopadloscian.hh inc/Przeszkoda.hh
+	g++ ${CPPFLAGS} -o ${OBJ}/PrzeszkodaPros.o src/PrzeszkodaPros.cpp
 
 
 clear:

@@ -13,7 +13,6 @@
 #include "Obiekt3D.hh"
 #include "SWektor.hh"
 #include "MacierzOb.hh"
-using std::string;
 
 /*!
  * \brief Modeluje pojęcie Powierzchnia
@@ -29,14 +28,6 @@ protected:
    * Bezparametryczny konstruktor używany przez klasy dziedziczące.
    */
   Powierzchnia();
-  /*!
-   * \brief Pole opisujące kolor rysowanej powierzchni 
-   *
-   * Pole zapamiętuje i podaje do metody rysującej kolor, 
-   * jakiego ma użyć gnuplot przy rysowaniu tej powierzchni.
-   * Domyślnie przyjmuje kolor czarny.
-   */
-  string kolor = "black";
   /*!
    * \brief Pole pamiętające wymiar układu współrzędnych 
    *

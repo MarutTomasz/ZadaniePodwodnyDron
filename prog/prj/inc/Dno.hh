@@ -11,6 +11,8 @@
  */
 
 #include "Powierzchnia.hh"
+#include "Dron.hh"
+#include "Przeszkoda.hh"
 
 /*!
  * \brief Modeluje pojęcie Dno
@@ -18,7 +20,7 @@
  * Klasa Dno dziedziczy publicznie po klasie Powierzchnia.\n
  * Reprezentuje ona płaszczyznę dna zbiornika, w którym ma pływać dron.
  */
-class Dno : public Powierzchnia {
+class Dno : public Powierzchnia, public Przeszkoda {
 public:
   /*!
    * \brief Usunięcie bezparametrycznego kontrukotra dna
@@ -33,6 +35,8 @@ public:
    * \param[in] wielkosc_palety - rozmiar osi gnuplota od 0 do MAX.
    */
   Dno(double wielkosc_palety);
+  bool czy_kolizja(InterfejsDrona *Inter) override;
+
 };
 
 #endif
