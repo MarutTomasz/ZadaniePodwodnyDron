@@ -32,7 +32,7 @@ void Prostopadloscian::Orientuj_wektor(Wektor3D &W)const {
   W = Orientacja * W;
 }
 
-void Prostopadloscian::Uzyskaj_wspolrzedne(std::vector<Wektor3D> &tablica_wspolrzednych)const {
+void Prostopadloscian::Uzyskaj_wspolrzedne(std::vector<Wektor3D> &tablica_wspolrzednych) const {
   Wektor3D przesuniecie_x(A/2,0,0);
   Wektor3D przesuniecie_y(0,B/2,0);
   Wektor3D przesuniecie_z(0,0,C/2);
@@ -71,7 +71,7 @@ double Prostopadloscian::get_bok(double bok) const {
   else if(bok == 3)
     return C;
   else {
-    cout << "Dlugosc boku nie moze miec wartosci ujemnej" << endl;
+    cout << "Nieprawidlowy bok. Mozliwe do wyboru to A, B, C" << endl;
     exit(1);
   }
 }

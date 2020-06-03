@@ -20,11 +20,12 @@
  * Reprezentuje ona płaszczyznę dna zbiornika, w którym ma pływać dron.
  */
 class Dno : public Powierzchnia, public Przeszkoda {
-public:
+protected:
   /*!
    * \brief Usunięcie bezparametrycznego kontrukotra dna
    */
   Dno() = delete;
+public:
   /*!
    * \brief Konsturktor jednoparametryczny dna
    *
@@ -34,7 +35,7 @@ public:
    * \param[in] wielkosc_palety - rozmiar osi gnuplota od 0 do MAX.
    */
   Dno(double wielkosc_palety);
-  bool czy_kolizja(InterfejsDrona *Inter) override;
+  bool czy_kolizja(std::shared_ptr<InterfejsDrona> Inter)const override;
 
 };
 

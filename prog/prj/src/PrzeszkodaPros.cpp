@@ -26,8 +26,8 @@ PrzeszkodaPros::PrzeszkodaPros(double A_bok,double B_bok,double C_bok) {
   C = C_bok;
 }
 
-bool PrzeszkodaPros::czy_kolizja(InterfejsDrona *Inter) {
-  Dron *R2D2 =  static_cast<Dron*> (Inter);
+bool PrzeszkodaPros::czy_kolizja(std::shared_ptr<InterfejsDrona> Inter) const {
+  std::shared_ptr<Dron> R2D2 =  std::static_pointer_cast<Dron> (Inter);
   double promien = R2D2->Wez_Promien();
   Wektor3D srodek_drona = R2D2->get_pozycja_srodka();
   if(srodek_drona[0] > Pozycja_srodka[0] - (A/2) - promien)
@@ -36,6 +36,6 @@ bool PrzeszkodaPros::czy_kolizja(InterfejsDrona *Inter) {
 	if(srodek_drona[1] < Pozycja_srodka[1] + (B/2) + promien)
 	  if(srodek_drona[2] > Pozycja_srodka[2] - (C/2) - promien)
 	    if(srodek_drona[2] < Pozycja_srodka[2] + (C/2) + promien)
-	      return 1;
-  return 0;
+	      return true;
+  return false;
 }

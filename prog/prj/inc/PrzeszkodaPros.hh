@@ -21,11 +21,12 @@
  * Reprezentuje ona przeszkodę o prostopadłościennym kształcie.
  */
 class PrzeszkodaPros: public Prostopadloscian, public Przeszkoda {
-public:
+protected:
   /*!
    * \brief Usunięcie bezparametrycznego kontrukotra przeszkody
    */
   PrzeszkodaPros() = delete;
+public:
   /*!
    * \brief Konstruktor trójparametryczny prostopadłościennej przeszkody
    *
@@ -38,7 +39,7 @@ public:
   PrzeszkodaPros(double A_bok,
 		 double B_bok,
 		 double C_bok);
-  bool czy_kolizja(InterfejsDrona *Inter) override;
+  bool czy_kolizja(std::shared_ptr<InterfejsDrona> Inter) const override;
 
 };
 

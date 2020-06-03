@@ -35,7 +35,7 @@ protected:
    * pracy śruby.
    * \param[in] W - Orientowany wektor.
    */
-  void Orientuj_wektor(Wektor3D &W) const;
+  void Orientuj_wektor(Wektor3D &W) const override;
   /*!
    * \brief Uzyskiwanie wspołrzędnych punktów
    *

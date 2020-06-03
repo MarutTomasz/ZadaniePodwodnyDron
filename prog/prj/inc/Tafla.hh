@@ -21,11 +21,12 @@
  * Reprezentuje ona płaszczyznę tafli wody zbiornika, w którym ma pływać dron.
  */
 class Tafla : public Powierzchnia, public Przeszkoda {
-public:
+protected:
   /*!
    * \brief Usunięcie bezparametrycznego kontrukotra tafli
    */
   Tafla() = delete;
+public:
   /*!
    * \brief Konsturktor jednoparametryczny tafli
    *
@@ -35,8 +36,8 @@ public:
    * \param[in] wielkosc_palety - rozmiar osi gnuplota od 0 do MAX.
    */
   Tafla(double wielkosc_palety);
-  bool czy_kolizja(InterfejsDrona *Inter) override;
-
+  bool czy_kolizja(std::shared_ptr<InterfejsDrona> Inter)const override;
+  
 };
 
 #endif

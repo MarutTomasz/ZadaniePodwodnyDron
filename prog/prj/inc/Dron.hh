@@ -13,6 +13,7 @@
 #include "Prostopadloscian.hh"
 #include "Sruba.hh"
 #include "Przeszkoda.hh"
+#include <memory>
 /*!
  * \brief Modeluje pojęcie Dron
  *
@@ -22,7 +23,7 @@
  * Zawiera deklaracje metod służących
  * do obsługi drona.
  */
-class Dron: public Prostopadloscian, public InterfejsDrona, public Przeszkoda {
+class Dron: public InterfejsDrona, public Prostopadloscian, public Przeszkoda, public std::enable_shared_from_this<Dron> {
 protected:
   /*!
    * \brief Pole prawej śruby drona
@@ -62,15 +63,22 @@ protected:
    */
   std::vector<std::shared_ptr<Przeszkoda> > kolekcja_przeszkod;
   /*!
-   * \brief Usunięcie konstruktora bezparametrycznego
+   * \brief Liczba istniejących dronów
+   *
+   * Pole reprezentuje liczbę istniejących na dronów
    */
+  static int liczba_dronow;
   Dron() = delete;
   void Obrot_Z(double stopnie) override;
   void Obrot_X(double stopnie) override;
   void Obrot_Y(double stopnie) override;
   void Przesun(double odleglosc) override;
- 
+  
 public:
+  /*!
+   * \brief Destruktor drona,
+   */
+  ~Dron() {--liczba_dronow;}
   /*!
    * \brief Kontruktor trójparametryczny drona
    *
@@ -100,10 +108,9 @@ public:
   void set_kolekcja_przeszkod( std::vector<std::shared_ptr<Przeszkoda> > kolekcja);
   void Plyn(double odleglosc, double kat) override;
   void Obrot_Z_Animowany(double stopnie) override;
-  bool czy_kolizja(InterfejsDrona *Inter) override;
+  bool czy_kolizja(std::shared_ptr<InterfejsDrona> Inter)const override;
   void Przesun(double X, double Y, double Z) override;
   void Przesun(const Wektor3D Wektor) override;
-
 };
 
 #endif

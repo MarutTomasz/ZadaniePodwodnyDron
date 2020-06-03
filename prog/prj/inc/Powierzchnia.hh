@@ -40,7 +40,7 @@ protected:
    * \param[in] tablica_wspolrzednych - tablica na współrzędne wierzchołków
    * względem globalnego układu współrzędnych.
    */
- void Uzyskaj_wspolrzedne(std::vector<Wektor3D> &tablica_wspolrzednych) const;
+  void Uzyskaj_wspolrzedne(std::vector<Wektor3D> &tablica_wspolrzednych) const;
 
   void Orientuj_wektor(Wektor3D &W) const override;
 public:

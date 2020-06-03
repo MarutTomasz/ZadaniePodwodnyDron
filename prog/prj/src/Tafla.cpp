@@ -15,7 +15,7 @@ Tafla::Tafla(double wymiar) {
   kolor = K;
 }
 
-bool Tafla::czy_kolizja(InterfejsDrona *Inter) {
-  Dron *R2D2 =  static_cast<Dron*> (Inter);
+bool Tafla::czy_kolizja(std::shared_ptr<InterfejsDrona> Inter) const {
+  std::shared_ptr<Dron> R2D2 = std::static_pointer_cast<Dron> (Inter);
   return (R2D2->get_pozycja_srodka()[2] > wymiar_palety*4/5);  
 }

@@ -29,18 +29,32 @@ const TYP & Wektor<TYP,ROZMIAR>::operator [] (unsigned int index) const {
 /********** KONSTRUKTORY **********/
 template<class TYP, unsigned int ROZMIAR>
 Wektor<TYP,ROZMIAR>::Wektor () {
+  ++liczba_wektorow_istniejacych;
+  ++liczba_wektorow_stworzonych;
   for (unsigned int i=0; i<ROZMIAR; ++i)
     tab[i] = 0;
 }
 
 template<class TYP, unsigned int ROZMIAR>
 Wektor<TYP,ROZMIAR>::Wektor (TYP *tabela) {
+  ++liczba_wektorow_istniejacych;
+  ++liczba_wektorow_stworzonych;
   for (unsigned int i=0; i<ROZMIAR; ++i)
     tab[i] = tabela[i];
 }
 
 template<class TYP, unsigned int ROZMIAR>
+Wektor<TYP,ROZMIAR>::Wektor (const Wektor<TYP,ROZMIAR> &W) {
+  ++liczba_wektorow_istniejacych;
+  ++liczba_wektorow_stworzonych;
+  for (unsigned int i=0; i<ROZMIAR; ++i)
+    tab[i] = W.tab[i];
+}
+
+template<class TYP, unsigned int ROZMIAR>
 Wektor<TYP,ROZMIAR>::Wektor(TYP x, TYP y, TYP z) {
+  ++liczba_wektorow_istniejacych;
+  ++liczba_wektorow_stworzonych;
   tab[0] = x;
   tab[1] = y;
   tab[2] = z;
@@ -168,3 +182,9 @@ void wyswietl_wektor_bledu(const Wektor<TYP,ROZMIAR> &W) {
   cout << "Dlugosc wektora bledu: ||Ax-b|| = " << W.dlugosc() << endl << endl << endl;
   cout << defaultfloat;
 }
+
+template<class TYP, unsigned int ROZMIAR>
+int Wektor<TYP,ROZMIAR>::liczba_wektorow_istniejacych(0);
+
+template<class TYP, unsigned int ROZMIAR>
+int Wektor<TYP,ROZMIAR>::liczba_wektorow_stworzonych(0);

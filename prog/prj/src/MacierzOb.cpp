@@ -11,19 +11,19 @@
 MacierzOb::MacierzOb(const Macierz3D &M) : Macierz3D(M) {
   double epsilon = 0.000000001;
   if(abs(tab[0] * tab[1]) > epsilon){
-    cout << "Macierz nie jest ortonormalna 1" << endl;
+    cout << "Macierz nie jest ortonormalna" << endl;
     exit(1);
   }
   if(abs(tab[1] * tab[2]) > epsilon){
-    cout << "Macierz nie jest ortonormalna 2" << endl;
+    cout << "Macierz nie jest ortonormalna" << endl;
     exit(1);
   }
   if(abs(tab[0] * tab[2]) > epsilon){
-    cout << "Macierz nie jest ortonormalna 3" << endl;
+    cout << "Macierz nie jest ortonormalna" << endl;
     exit(1);
   }
   if(abs((*this).wyznacznik(Laplace) - 1) > epsilon){
-    cout << "Macierz nie jest ortonormalna 4" << endl;
+    cout << "Macierz nie jest ortonormalna" << endl;
     exit(1);
   }
 }

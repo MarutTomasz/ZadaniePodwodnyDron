@@ -7,6 +7,9 @@
  * obsługi drona.
  */
 
+
+int Dron::liczba_dronow(0);
+
 Dron::Dron(double bok_A, double bok_B, double bok_C) {
   if(bok_A < 0){
     cout << "Dlugosc boku nie moze miec wartosci ujemnej" << endl;
@@ -34,7 +37,16 @@ Dron::Dron(double bok_A, double bok_B, double bok_C) {
   Odsuniecie_sruby_prawej = Prawy;
   Prawa.set_pozycja_srodka(Prawy);
   promien = sqrt(pow(A,2) + pow(C/2,2));
-  kolor = "red";
+
+  ++liczba_dronow;
+  
+  if(liczba_dronow == 1)
+    kolor = "red";
+  else if(liczba_dronow == 2)
+    kolor = "yellow";
+  else if(liczba_dronow == 3)
+    kolor = "green"; 
+
   Lewa.set_kolor(kolor);
   Prawa.set_kolor(kolor);
 }
@@ -148,7 +160,7 @@ void Dron::Plyn(double odleglosc, double kat) {
       Prawa.Obracaj();
       Lewa.Obracaj();
       for (auto elem : kolekcja_przeszkod) {
-	if( elem->czy_kolizja(this)){
+	if( elem->czy_kolizja(shared_from_this())){
 	  cout << "Możliwe nastapienie kolizji. Ruch wstrzymany" << endl;
 	  Przesun(-1);
 	  kolizja = 1;
@@ -164,7 +176,7 @@ void Dron::Plyn(double odleglosc, double kat) {
       Prawa.Obracaj();
       Lewa.Obracaj();
       for (auto elem : kolekcja_przeszkod) {
-	if( elem->czy_kolizja(this)) {
+	if( elem->czy_kolizja(shared_from_this())) {
    	  cout << "Możliwe nastapienie kolizji. Ruch wstrzymany" << endl;
 	  Przesun(1);
 	  kolizja = 1;
@@ -179,7 +191,7 @@ void Dron::Plyn(double odleglosc, double kat) {
       Prawa.Obracaj();
       Lewa.Obracaj();
       for (auto elem : kolekcja_przeszkod) {
-	if( elem->czy_kolizja(this)){
+	if( elem->czy_kolizja(shared_from_this())){
 	  cout << "Możliwe nastapienie kolizji. Ruch wstrzymany" << endl;
 	  Przesun(-1 * odleglosc);
 	  kolizja = 1;
@@ -224,9 +236,9 @@ void Dron::Narysuj() {
 }
 
 
-bool Dron::czy_kolizja(InterfejsDrona *Inter) {
-  if(Inter != this){
-    Dron *R2D2 = static_cast<Dron*> (Inter);
+bool Dron::czy_kolizja(std::shared_ptr<InterfejsDrona> Inter)const {
+  if(Inter != shared_from_this()){
+    std::shared_ptr<Dron> R2D2 = std::static_pointer_cast<Dron> (Inter);
     double promienie = this->Wez_Promien() + R2D2->Wez_Promien();
     Wektor3D odleglosc = this->get_pozycja_srodka() - R2D2->get_pozycja_srodka();  
     return (promienie > odleglosc.dlugosc());

@@ -44,8 +44,15 @@ class Wektor {
    * Tablica zawierająca elementy wektora.
    * \param ROZMIAR - wielkość tablicy elementów.
    */
-TYP tab [ROZMIAR];
-  
+  TYP tab [ROZMIAR];
+  /*!
+   * \brief Liczba istniejacych wektorow.
+   */
+  static int liczba_wektorow_istniejacych;
+  /*!
+   * \brief Liczba stworzonych wektorow.
+   */
+  static int liczba_wektorow_stworzonych;
 public:
   /*!
    * \brief Przeciążenie nawiasów klamrowych
@@ -73,6 +80,10 @@ public:
    */
   Wektor();
   /*!
+   * \brief Konstruktor kopiujący wektora 
+   */
+  Wektor(const Wektor<TYP,ROZMIAR> &W);
+  /*!
    * \brief Konstruktor jednoparametryczny wektora 
    *
    * Konstruktor inicjalizuje elementy wektora wartościami z tablicy o
@@ -90,6 +101,10 @@ public:
    * \param[in] z - wartość współrzędnej Z.
     */
   Wektor(TYP x, TYP y, TYP z);
+  /*!
+   * \brief Desstruktor wektora 
+   */
+  ~Wektor() { --liczba_wektorow_istniejacych; }
   
   /*!
    * \brief Przeciążenie operatora dodawania
@@ -176,7 +191,19 @@ public:
    * \attention Funkcja dokonuje zmian w polach struktury.
    */
   void przestaw_elementy(unsigned int index1, unsigned int index2);
-
+  /*!
+   * \brief Zwraca liczbę istniejącyh wektorów
+   *
+   * \return Funkcja zwraca liczbe istniejących wektorow.
+   */
+  static int get_liczba_istniejacych() { return liczba_wektorow_istniejacych; } 
+  /*!
+   * \brief Zwraca liczbę stworzoncych wektorów
+   *
+   * \return Funkcja zwraca liczbe istniejących wektorow.
+   */
+  static int get_liczba_stworzonych() { return liczba_wektorow_stworzonych; }
+  
 };
 
 /*!

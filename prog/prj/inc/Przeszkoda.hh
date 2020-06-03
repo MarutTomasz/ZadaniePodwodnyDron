@@ -10,6 +10,7 @@
  */
 
 #include "InterfejsDrona.hh"
+#include <memory>
 
 /*!
  * \brief Modeluje pojęcie Przeszkoda
@@ -27,7 +28,7 @@ public:
    * \retval true - jeśli może nastąpić kolizja.
    * \retval false - w przeciwnym przypadku.
    */
-  virtual bool czy_kolizja(InterfejsDrona *Inter) =0;
+  virtual bool czy_kolizja(std::shared_ptr<InterfejsDrona> Inter)const =0;
 
 };
 

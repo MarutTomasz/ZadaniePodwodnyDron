@@ -71,7 +71,7 @@ public:
    * Metoda zwraca promień kuli opisanej na dronie.
    * \return - promień kuli. 
    */
-  double Wez_Promien() { return promien; }
+  double Wez_Promien()const { return promien; }
   /*!
    * \brief Płynięcie drona z animacją
    *

@@ -65,13 +65,29 @@ protected:
    */
   string kolor = "black";
   /*!
+   * \brief Liczba istniejących obiektów3D 
+   */
+  static int liczba_obiektow_istniejacych;
+  /*!
+   * \brief Liczba stworzonych obiektów3D 
+   */
+  static int liczba_obiektow_stworzonych;
+  /*!
    * \brief Bezparametryczny konstruktor obiektu.
    *
    * Konstruktor wykorzystywany przy tworzeniu 
    * obiektów klas pochodnych. Nie pozwala samemu 
    * stworzyć obiektu 3D. 
    */
-  Obiekt3D() {};
+  Obiekt3D() { ++liczba_obiektow_stworzonych; ++liczba_obiektow_istniejacych; }
+  /*!
+   * \brief Jednoparametryczny konstruktor obiektu.
+   *
+   * Konstruktor wykorzystywany przy tworzeniu 
+   * obiektów klas pochodnych. Nie pozwala samemu 
+   * stworzyć obiektu 3D. 
+   */
+  Obiekt3D(std::shared_ptr<drawNS::Draw3DAPI> API) { ++liczba_obiektow_stworzonych; ++liczba_obiektow_istniejacych; api = API; }
   /*!
    * \brief Metoda orientująca wektor
    *
@@ -81,6 +97,10 @@ protected:
    */
   virtual void Orientuj_wektor(Wektor3D &W) const =0;
 public:
+  /*!
+   * \brief Destruktor obiektu.
+   */
+  ~Obiekt3D() { --liczba_obiektow_istniejacych; }
   /*!
    * \brief Ustawia nowy wektor środka obiektu
    *
@@ -146,6 +166,10 @@ public:
    * oraz macierz orientacji obiektu w przestrzeni.
    */
   virtual void Narysuj() = 0;
+
+  static int get_liczba_istniejacych() {return liczba_obiektow_istniejacych;}
+  static int get_liczba_stworzonych() {return liczba_obiektow_stworzonych;}
+
 };
 
 

@@ -11,8 +11,8 @@ Dno::Dno(double wymiar) {
   kolor = "grey";
 }
 
-bool Dno::czy_kolizja(InterfejsDrona *Inter) {
+bool Dno::czy_kolizja(std::shared_ptr<InterfejsDrona> Inter) const {
   double nowy_poziom = -1*wymiar_palety + Inter->Wez_Promien();
-  Dron *R2D2 = static_cast<Dron*> (Inter);
+  std::shared_ptr<Dron> R2D2 = std::static_pointer_cast<Dron> (Inter);
   return (R2D2->get_pozycja_srodka()[2] <= nowy_poziom);  
 }
